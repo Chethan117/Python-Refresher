@@ -1,0 +1,7 @@
+Thank you for taking the time to meet with me today. I wanted to discuss my current role and my future with the company, especially in light of our mid-year review conversation. I’ve been enjoying the work I’m doing, like supporting the team with the SAS to Snowflake migration and other projects, and I’m committed to contributing even more to our success.
+
+However, as we discussed earlier, my primary goal is to transition from a contract position to a full-time role within the organization. This is important to me, not just for my career development, but also because of personal circumstances—I recently got married, and my partner will be arriving on a tourist visa soon. This brings up concerns about our stability, and I’m finding it challenging to plan our future, especially when it comes to housing, as many places require longer-term contract commitments.
+
+I understand that moving from contract to full-time can be a complex process, and I’m open to working with you and HR to explore the options available. I’d love to hear your thoughts on how we can work towards making this transition happen. Additionally, I would appreciate guidance on any steps I can take on my end to help this process, as well as any advice you might have on navigating visa sponsorship through the company.
+
+My main goal is to establish a long-term career path here, and I believe formalizing my position would allow me to contribute even more effectively to the team. I would greatly appreciate your feedback and support as we navigate this together."
