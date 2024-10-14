@@ -1,4 +1,6 @@
-WHERE 
-    (a.dt >= DATEADD(day, -3, CURRENT_DATE) AND a.dt < CURRENT_DATE AND EXTRACT(DAYOFWEEK FROM CURRENT_DATE) = 2)  -- If Monday, check for last 3 days
-    OR
-    (a.dt = DATEADD(day, -1, CURRENT_DATE) AND EXTRACT(DAYOFWEEK FROM CURRENT_DATE) != 2) 
+ CASE 
+    WHEN DAYOFWEEK(CURRENT_DATE()) = 2 THEN 
+      a.dt >= DATEADD(DAY, -3, CURRENT_DATE()) AND a.dt < CURRENT_DATE()
+    ELSE 
+      a.dt = DATEADD(DAY, -1, CURRENT_DATE())
+  END
