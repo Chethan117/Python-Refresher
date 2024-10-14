@@ -1,6 +1,5 @@
- CASE 
-    WHEN DAYOFWEEK(CURRENT_DATE()) = 2 THEN 
-      a.dt >= DATEADD(DAY, -3, CURRENT_DATE()) AND a.dt < CURRENT_DATE()
-    ELSE 
-      a.dt = DATEADD(DAY, -1, CURRENT_DATE())
-  END
+data _null_;
+    today_num = weekday(today());
+    today_name = put(today(), weekdate.);
+    put "Today is day " today_num "of the week (" today_name ")";
+run;
