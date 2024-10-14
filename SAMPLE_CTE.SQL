@@ -1,26 +1,6 @@
-CREATE OR REPLACE TABLE TABLE_1 AS
-WITH CTE_C AS (
-    SELECT A.* 
-    FROM tablea A
-    GROUP BY A.DT
-)
-SELECT 
-    A.*, 
-    B.*, 
-    C.*
-FROM tablea A
-LEFT JOIN TABLEB B
-    ON /* specify your join condition between A and B here */
-LEFT JOIN CTE_C C
-    ON A.DT = C.DT
-WHERE 
-    (
-        CASE 
-            WHEN DATE_PART('WEEKDAY', CURRENT_DATE()) = 2 
-            THEN (A.DT >= CURRENT_DATE() - INTERVAL '3 DAY' AND A.DT < CURRENT_DATE())
-            ELSE (A.DT = CURRENT_DATE() - INTERVAL '1 DAY')
-        END
-    )
-    OR (A.REDT IS NULL AND A.REQDT IS NULL)
-HAVING SOME_IND = 0 OR SAMEB_IND = 0
-ORDER BY 1, 2, 3;
+  (EXTRACT(DAYOFWEEK FROM CURRENT_DATE) = 2 
+        AND a.dt >= DATEADD(day, -3, CURRENT_DATE) 
+        AND a.dt < CURRENT_DATE)  -- If today is Monday, check if dt is in the last 3 days
+    OR 
+    (EXTRACT(DAYOFWEEK FROM CURRENT_DATE) != 2 
+        AND a.dt = DATEADD(day, -1, CURRENT_DATE))  -- If not Monday, check if dt is yesterday
