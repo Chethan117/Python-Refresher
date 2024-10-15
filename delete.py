@@ -1,1 +1,18 @@
-This column captures detailed textual information regarding each direct debit transaction. It may include references such as payment descriptions, transaction IDs, payer or payee names, purpose of the debit, and any additional remarks or notes about the transaction. This field is typically used for reference purposes or to provide additional context to the direct debit entries.
+import re
+
+# Define a function to extract 'ab' followed by any characters up to the first space
+def extract_ab_before_space(file_path):
+    with open(file_path, 'r') as file:
+        content = file.read()
+        
+        # Regular expression to find all occurrences of 'ab' followed by any characters up to the first space
+        matches = re.findall(r'\bab\S*', content)
+        
+        return matches
+
+# Path to your file
+file_path = 'your_file.txt'
+
+# Call the function and print the results
+results = extract_ab_before_space(file_path)
+print(results)
