@@ -1,28 +1,12 @@
-Background:
-In fraud detection, it is critical to identify and monitor charge-off and non-charge-off transactions in inbound app fraud. Charge-offs represent financial losses that cannot be collected, while non-charge-offs reflect recoverable amounts or disputes under investigation. By separating these two categories, the company can better assess risk exposure and potential recovery strategies. This daily monitoring system will improve fraud risk management, streamline reporting, and enhance decision-making.
-
-Intent:
-The goal of this initiative is to develop a system that monitors app fraud inbound data, splitting it into charge-off and non-charge-off transactions. This process enables daily reporting and generates a datamart that stores relevant fraud insights, empowering stakeholders with timely data for operational and strategic decisions.
-
-Method:
-Data Collection:
-
-Extract inbound fraud data from relevant sources (e.g., app logs, fraud detection systems, or databases).
-Ensure data includes information on whether transactions have been marked as charge-off or non-charge-off.
-Data Processing:
-
-Apply necessary business rules to classify each transaction as either charge-off or non-charge-off.
-Use SQL queries or Python scripts to transform and clean the data.
-Data Storage:
-
-Store processed data in a datamart, ensuring proper structuring for easy access and reporting.
-Datamart will be designed for optimal retrieval of charge-off and non-charge-off transactions.
-Daily Monitoring:
-
-Automate the daily extraction and processing of inbound fraud data.
-Create dashboards and daily reports in Tableau or Power BI to visualize the split between charge-off and non-charge-off transactions.
-Implement alerts for anomalies or significant changes in transaction patterns.
-Reporting:
-
-Generate daily reports for fraud risk analysts and stakeholders.
-Highlight trends, potential issues, and recovery opportunities based on the split data.
+Start by pulling applications in a waiting status with a SIRA date within the last X days that hit specific SIRA rules, noting which rules were triggered.
+Gather additional applicant information, including home phone, work phone, mobile phone numbers, employment history, income history, duration of stay at the address, task lists, local rule hits, total match score, operating system name, and fraud risk score.
+Identify how many other applications used the same cookie before the current application to assess patterns and potential fraud risks.
+Count instances of phone and email fraud based on applicant details and identify any fraudulent behavior.
+Pull all quotation data from the last 90 days along with cookie information related to those applications and quotations, including associated email addresses and IP addresses.
+Check which SIRA rules were hit for each application and compile that information for analysis.
+Retrieve all applications marked as "mos" (most suspicious) from the past three years, noting the applicant's name and date of birth, and return applications from the last 445 days with prior applications marked as "mos."
+List all accounts opened in the last three months, including their addresses, emails, and mobile numbers, and return applications from the last 445 days that share account details with accounts older than three months.
+Fetch bureau data from Equifax, verifying any applications lacking bureau data against Equifax and adding tradeline data for summarization.
+Create base rules, including a secondary rule for low-risk score accounts, and combine results from old and new data to refine the rules.
+Identify cases with duplicate IDs but different rules applied.
+Finalize the base rules and set up an email notification system for stakeholders when an automatic decision is made based on the established base rules.
