@@ -17,5 +17,12 @@ for match in matches:
     print(f"|{dbname}|{tablename}|")
 
 
-
+CASE 
+        WHEN UPPER(t2.column_name) LIKE 'POLICY RULL%' 
+             AND POSITION('RR' IN UPPER(t2.column_name)) > 0 
+        THEN UPPER(SUBSTRING(
+                t2.column_name, 
+                POSITION('RR' IN UPPER(t2.column_name)), 
+                4
+            ))
 
