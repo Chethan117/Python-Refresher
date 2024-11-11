@@ -1,4 +1,5 @@
-Reflection on Performance of the Year
-Strengths: Demonstrated strong technical and problem-solving skills, contributing to team success.
-Opportunities: Focus on process optimization, expanding leadership skills, and diversifying my role beyond the SAS migration. I also aim to transition from a contract to a permanent role within the team, contributing even more effectively to the long-term success of the projects.
-Overall Performance: Efficiently managed both individual tasks and team responsibilities, ensuring high-quality results. I’ve proactively taken on additional challenges and look forward to growing further in my career with the team.
+"How do you feel about my overall contribution to the team, both in terms of my daily tasks and collaboration on projects like the mCOM automation? Are there any areas you think I could improve on?"
+
+"In your opinion, do I communicate effectively with the team and stakeholders, and do you think I manage my tasks well? If not, what improvements would you suggest?"
+
+"As a peer reviewer and team member, do you think I’m offering valuable insights and support in our projects? Is there anything you think I could do differently to improve the team’s performance?"
