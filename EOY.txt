@@ -1,5 +1,4 @@
-Additionally, during the SAS to Snowflake migration, I identified the potential risks of delays in obtaining department tables due to data quality checks, governance, and approvals. To mitigate this, I quickly assessed each new report, identified the necessary tables, and registered them in Zeus early in the process. This proactive strategy helped me stay on track with my tasks, exceed my targets, and shared this approach with the team to streamline our workflow.
 Reflection on Performance of the Year
-Strengths: I’ve consistently demonstrated strong technical skills, problem-solving abilities, and a commitment to team success. I’ve proactively learned and engaged in essential tasks, ensuring continuity and stability.
-Opportunities: Going forward, I can continue to improve by seeking opportunities for process optimization and further expanding my leadership skills.
-Overall Performance: I’ve been able to manage both individual tasks and team-oriented responsibilities efficiently, always aiming for the highest quality and accuracy in my work.
+Strengths: Demonstrated strong technical and problem-solving skills, contributing to team success.
+Opportunities: Focus on process optimization, expanding leadership skills, and diversifying my role beyond the SAS migration. I also aim to transition from a contract to a permanent role within the team, contributing even more effectively to the long-term success of the projects.
+Overall Performance: Efficiently managed both individual tasks and team responsibilities, ensuring high-quality results. I’ve proactively taken on additional challenges and look forward to growing further in my career with the team.
