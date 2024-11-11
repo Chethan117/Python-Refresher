@@ -1,0 +1,36 @@
+Self-Evaluation: Year-End Competency Review
+1. Communication
+Rating: Very Strong
+I consistently keep stakeholders informed, from discussing project changes with Mark and Joel to handling quick adjustments for data migrations, like when complaints data switched from CLARA to Salesforce. I make sure communication is clear and effective, and I’ve received positive feedback for my responsiveness.
+
+2. Customer Focus
+Rating: Exceptional
+My main project involved automating metric-sharing with stakeholders, which saved a lot of manual effort. I’ve also been able to quickly adapt reports and data as business analysts need, helping them get the results they’re looking for.
+
+3. Influence
+Rating: Strong
+Through consistent, reliable work, I’ve built trust with team members and stakeholders. This has helped me positively influence projects, especially during complex transitions like the SAS exit migration.
+
+4. Job-Specific Skills
+Rating: Exceptional
+Since joining, I’ve built strong skills in SAS and Python, plus new tools like Legoland. During the SAS migration, I identified a missing lookup table in the direct debit report that was causing manual authorizations to be removed, which improved report accuracy and efficiency.
+
+5. Judgment
+Rating: Very Strong
+I make sure to assess the impact of my decisions on the team and the project as a whole. For instance, I prioritized retiring unused reports and datamarts, which kept the system streamlined and reduced redundant work.
+
+6. Lives the Values
+Rating: Exceptional
+I consistently monitor data quality, ensure reports load correctly, and check on critical metrics to help keep everything running smoothly. I also support the team during migrations and make sure targets are met, always aiming to add value.
+
+7. Problem Solving
+Rating: Very Strong
+When the team needed adjustments during the CLARA to Salesforce migration, I was quick to address issues to keep things moving. The direct debit report example, where I identified the missing lookup table, is another instance where I proactively solved a problem that could have disrupted operations.
+
+8. Results Focus
+Rating: Exceptional
+I make a point to not only hit my monthly targets but also take on extra tasks when possible. The automation project I led saved a lot of time for the team and reduced the manual effort involved in sharing metrics.
+
+9. Teamwork
+Rating: Very Strong
+I regularly support the team with dual controls, help set up tables via Zeus, and pitch in for tasks like mobile app event changes. By assisting with daily checks and troubleshooting, I help keep our operations stable and our team coordinated.
