@@ -1,20 +1,4 @@
-
-Here's a simple, point-wise summary of your Key Results, Competency Strengths and Opportunities, and Reflection on Performance:
-
-Key Results (What)
-Successfully migrated from SAS to Snowflake, improving reporting efficiency.
-Automated metrics sharing, saving significant time and reducing manual effort.
-Proactively identified and fixed issues in the direct debit report, preventing potential credit abuse.
-Delivered key reports on time, consistently exceeding monthly targets and helping the team achieve goals.
-Collaborated with stakeholders to adjust reports based on new requirements, ensuring accuracy and meeting expectations.
-Helped the team during the SAS migration by setting up tables via Zeus and resolving technical issues like missing data in staging tables.
-Competency Strengths and Opportunities (The How)
-Problem Solving: Quickly identified and fixed issues, such as missing lookup tables and data transfer problems, ensuring smooth operations.
-Communication: Worked closely with stakeholders, clarifying requirements and making adjustments to meet their needs.
-Job-Specific Skills: Gained proficiency in Python, Snowflake, SQL, and SAS, applying these skills to improve processes and support migrations.
-Results Focus: Always met and exceeded targets, even taking on extra tasks to ensure team goals were met.
-Teamwork: Regularly supported the team with dual controls, troubleshooting, and ensuring the stability of operations. I also proactively engaged with BAUs to avoid risks.
-Customer Focus: Focused on improving processes to support business operations, ensuring the team’s work aligned with stakeholder needs.
+Additionally, during the SAS to Snowflake migration, I identified the potential risks of delays in obtaining department tables due to data quality checks, governance, and approvals. To mitigate this, I quickly assessed each new report, identified the necessary tables, and registered them in Zeus early in the process. This proactive strategy helped me stay on track with my tasks, exceed my targets, and shared this approach with the team to streamline our workflow.
 Reflection on Performance of the Year
 Strengths: I’ve consistently demonstrated strong technical skills, problem-solving abilities, and a commitment to team success. I’ve proactively learned and engaged in essential tasks, ensuring continuity and stability.
 Opportunities: Going forward, I can continue to improve by seeking opportunities for process optimization and further expanding my leadership skills.
