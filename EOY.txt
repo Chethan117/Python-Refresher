@@ -1,16 +1,1 @@
-. Transaction Authorization Categories:
-Approved:
 
-The transaction is successfully authorized, and the payment can proceed.
-Example: Customer has sufficient funds, and all security checks pass.
-Referred:
-
-The transaction is neither approved nor declined immediately. It requires manual intervention or further verification by the bank or card issuer.
-Example: Suspicious activity detected, or additional checks are needed before approval.
-Pickup:
-
-The transaction is declined, and the card is marked for confiscation. This usually happens when the card is reported stolen or there’s suspected fraud.
-Example: Merchant is instructed to keep the card if presented physically.
-Declined:
-
-The transaction is rejected due to various reasons like insufficient funds, incorrect card details, or security blocks.
