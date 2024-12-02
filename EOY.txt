@@ -1,6 +1,14 @@
-1. Monthly Checks — Excluding PayPal:
-Reason: PayPal transactions are common and often involve multiple legitimate recurring payments with varied names.
-Benefit: Excluding PayPal transactions prevents false positives by filtering out frequent, low-risk transactions, allowing the system to focus on more suspicious patterns or merchants.
-2. Yearly Checks — Extracting Microsoft Billing:
-Reason: Microsoft handles many annual subscriptions (like Office 365) and uses consistent patterns in their merchant names (e.g., "Microsoft Billing," "MFSTBilling").
-Benefit: Focusing on Microsoft Billing transactions annually helps detect potential bypass attempts that may go unnoticed in shorter-term checks. This targeted approach ensures that long-term or annual CPA issues are properly identified and reviewed.
+Extract Data:
+
+Identify authorization requests from the last 7 days.
+Self-join to compare blocked and approved transactions.
+Focus on specific merchants (PayPal exclusion monthly; Microsoft inclusion yearly).
+Categorize Transactions:
+
+Use authorization response codes to classify transactions into Approved, Referred, Pickup, or Declined.
+Aggregate and Union:
+
+Combine monthly and yearly extracts for comprehensive monitoring.
+Send to Workstream:
+
+Provide the data to the disputes team for review and action.
