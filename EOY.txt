@@ -1,1 +1,6 @@
-Some merchants, like PayPal and Microsoft, frequently process legitimate recurring transactions with varied or dynamic merchant names and IDs. Excluding these patterns helps prevent false positives, ensuring that the system flags only truly suspicious bypass attempts.
+1. Monthly Checks — Excluding PayPal:
+Reason: PayPal transactions are common and often involve multiple legitimate recurring payments with varied names.
+Benefit: Excluding PayPal transactions prevents false positives by filtering out frequent, low-risk transactions, allowing the system to focus on more suspicious patterns or merchants.
+2. Yearly Checks — Extracting Microsoft Billing:
+Reason: Microsoft handles many annual subscriptions (like Office 365) and uses consistent patterns in their merchant names (e.g., "Microsoft Billing," "MFSTBilling").
+Benefit: Focusing on Microsoft Billing transactions annually helps detect potential bypass attempts that may go unnoticed in shorter-term checks. This targeted approach ensures that long-term or annual CPA issues are properly identified and reviewed.
