@@ -9,6 +9,14 @@ Use authorization response codes to classify transactions into Approved, Referre
 Aggregate and Union:
 
 Combine monthly and yearly extracts for comprehensive monitoring.
+When unioning the monthly and yearly extracts, we exclude transactions with the approved authorization response. The reasoning behind this exclusion is to focus on potentially problematic transactions—those that may require further investigation due to being referred, picked up, or declined. Approved transactions are typically valid and do not require any further intervention. Excluding them helps streamline the process and avoid cluttering the workstream with valid transactions that do not need action.
 Send to Workstream:
 
 Provide the data to the disputes team for review and action.
+
+
+
+Stand-in Processing Code:
+Indicates whether the transaction bypassed normal processing due to system downtime or fallback procedures.
+7 or 07 Code: Typically signals a stand-in authorization, where the card issuer system was unavailable, and a default decision was made.
+Categorized as either VEPS (Visa Payment Stop Service) or RPCS (Mastercard Recurring Payment Cancellation Service).
