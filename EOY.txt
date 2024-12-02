@@ -1,5 +1,28 @@
-"How do you feel about my overall contribution to the team, both in terms of my daily tasks and collaboration on projects like the mCOM automation? Are there any areas you think I could improve on?"
+Background
+In our dispute management process, it's crucial to identify authorizations that have not yet posted to a customer's account. This ensures compliance with Mastercard regulations and helps agents handle valid disputes efficiently.
 
-"In your opinion, do I communicate effectively with the team and stakeholders, and do you think I manage my tasks well? If not, what improvements would you suggest?"
+Intent (What Are We Trying to Achieve?)
+We aim to track credit/debit card authorizations that haven't posted to the account and ensure only valid cases are worked on by the disputes team. This process also helps prevent invalid entries and complies with Mastercard chargeback regulations for specific transaction types.
 
-"As a peer reviewer and team member, do you think I’m offering valuable insights and support in our projects? Is there anything you think I could do differently to improve the team’s performance?"
+Method (How Do We Do It?)
+Initial Data Collection:
+
+Gather all entries made by agents, excluding results already processed in previous daily runs.
+Remove duplicate records and validate account IDs to filter out any incorrect or junk data that agents may have entered.
+Validation Period:
+
+Only consider valid account entries.
+Monitor for 30 days—if an authorization hasn’t posted within this period, no further assessment is needed.
+Transaction Matching:
+
+Create a daily table by pulling merchant names and authorization amounts from CardGuard.
+Use an inner join with the posted transaction data to find the posting date.
+Ensure compliance with Mastercard chargeback rules (e.g., for transaction code 6011, chargebacks are only allowed 5 days after posting).
+Workstream Processing:
+
+Push validated and matched data into the appropriate workstream for the disputes team to address.
+Data Repository Management:
+
+Insert new data into the repository table.
+Remove outdated records, keeping only the last 365 days for reference.
+This process ensures that only valid and compliant dispute cases reach the disputes team, reducing errors and maintaining regulatory compliance.
