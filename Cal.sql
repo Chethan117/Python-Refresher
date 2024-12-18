@@ -20,3 +20,8 @@ SELECT
     to_date
 FROM date_ranges
 ORDER BY period;
+Non-Execution Impact:
+Failure to remove vulnerable accounts from the SCA bypass list exposes the system to increased fraud risks, leading to potential financial losses, regulatory non-compliance, and reputational damage.
+
+Why Critical:
+It ensures secure transactions, protects customer data, and aligns with compliance standards, minimizing risks associated with unauthorized access
