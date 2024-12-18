@@ -1,1 +1,0 @@
-It's crucial because failing to remove vulnerable accounts from the SCA list increases the risk of fraud, as unauthorized transactions could go unnoticed, putting both the customer and the business at risk.
