@@ -1,21 +1,40 @@
-Background:
-When a transaction is flagged as fraud, Ethoca allows the card issuer to contact the merchant to request a refund. However, some transactions may fall outside the acceptable chargeback window, typically 120 days from the transaction date, making them "out of time" for chargeback processing. To manage this, we focus on transactions from the inbound recoverable fraud data within the last 10 days to identify and handle fraud cases that are still within the valid chargeback timeframe.
+Method: Fraud Transaction Extraction and Processing
+Extract Recent Fraud Transactions:
 
-Intent:
-The intent is to identify and flag fraud transactions that are within the 120-day chargeback window and ensure that they are processed through Ethoca for merchant refund requests. By focusing on the inbound recoverable fraud data from the last 10 days, we aim to prevent chargebacks from becoming invalid due to exceeding the time window, ensuring that only eligible transactions are pursued for recovery.
+Identify transactions from the inbound recoverable dataset that were flagged as fraud in the last 10 days.
+Filter for Debit Transactions:
+
+From the extracted transactions, filter those that were debited within the last 120 days from Visa or MasterCard merchants.
+Identify Older Debit Transactions:
+
+Further filter transactions to include only those that occurred between 120 days and 112 days from the current date.
+Check for Chargebacks:
+
+For the transactions identified in the previous step, check if a chargeback has been actioned. Extract the chargeback date and exclude transactions where chargebacks have been completed.
+Check for Merchant Credits:
+
+For the remaining transactions, verify if there are any credits from the merchant for the associated accounts.
+Avoid Duplicates:
+
+Compare the extracted transactions with yesterday's flagged cases to ensure no duplicate transactions are included.
+Push Non-Worked Transactions to Tables:
+
+Add all non-duplicate transactions to the daily table and the repo table.
+Send to Operational Workstream:
+
+Share the final list of transactions with the operational workstream for further action and resolution.
+Script Decisions:
+For Debit Transactions:
+Extract transactions flagged as fraud within the last 10 days.
+Filter transactions debited in the last 120 days, ensuring they are linked to Visa or MasterCard merchants.
+Further filter to include only transactions between 120 and 112 days from the current date.
+For Credit Transactions:
+Verify credits from merchants for accounts associated with non-chargeback transactions.
+Exclude duplicates by comparing with yesterday’s flagged cases.
+This structured method ensures fraudulent transactions are systematically identified, verified, and prepared for operational action while minimizing errors and duplication.
 
 
-Method:
-Extract Data from Inbound Recoverable Fraud: Pull the data from the inbound recoverable fraud dataset for the last 10 days. This dataset contains transactions flagged as potentially fraudulent and eligible for further action.
-
-Identify Chargeback Time Window: Set the time window for chargeback eligibility, typically 120 days from the transaction date. Transactions older than this period are considered "out of time" and are no longer eligible for chargeback processing.
 
 
-Filter Valid Transactions: Filter the inbound recoverable fraud data to identify transactions within the last 10 days that are still within the 120-day chargeback window from the transaction date. This ensures that only valid fraud transactions are flagged for further action.
-
-Flag for Merchant Refund: For transactions within the valid time window, allow Ethoca to contact the merchant to request a refund, as these transactions are eligible for chargeback recovery.
 
 
-Exclude Out of Time Transactions: Mark or exclude transactions that are "out of time" (i.e., older than 120 days) from further processing, ensuring that no invalid chargebacks are pursued.
-
-Reporting: Generate reports to track fraud transactions that are eligible for recovery and those that have gone "out of time," providing transparency for stakeholders and ensuring compliance with chargeback rules
