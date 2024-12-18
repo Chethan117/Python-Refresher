@@ -1,15 +1,21 @@
 Background:
-Ethoca chargebacks can be "out of time" when they fall outside the prescribed time frame for initiating a chargeback, often set by the card networks (e.g., Visa, MasterCard). Chargebacks are typically subject to specific timelines, and transactions that fall outside these timelines are no longer eligible for chargeback resolution. Identifying "out of time" chargebacks helps to ensure that only valid chargebacks are processed.
+When a transaction is flagged as fraud, Ethoca allows the card issuer to contact the merchant to request a refund. However, some transactions may fall outside the acceptable chargeback window, typically 120 days from the transaction date, making them "out of time" for chargeback processing. To manage this, we focus on transactions from the inbound recoverable fraud data within the last 10 days to identify and handle fraud cases that are still within the valid chargeback timeframe.
 
 Intent:
-The intent is to identify and handle chargebacks that fall outside the acceptable time window, ensuring that transactions are not incorrectly disputed after the allowed period has passed. This ensures compliance with card network rules and prevents unnecessary chargeback processing.
+The intent is to identify and flag fraud transactions that are within the 120-day chargeback window and ensure that they are processed through Ethoca for merchant refund requests. By focusing on the inbound recoverable fraud data from the last 10 days, we aim to prevent chargebacks from becoming invalid due to exceeding the time window, ensuring that only eligible transactions are pursued for recovery.
 
 
 Method:
-Base Data from Recoverable Inbound Fraud: Pull the base data from the recoverable inbound fraud dataset for the last 10 days. This provides the recent transactions eligible for chargeback review.
-Identify Chargeback Time Window: Determine the allowed time window for chargebacks (e.g., 120 days from the transaction date).
-Filter Out of Time Chargebacks: Use SQL or another data processing tool to filter out transactions from the base data that fall outside the time window (e.g., transactions older than 120 days from the transaction date).
+Extract Data from Inbound Recoverable Fraud: Pull the data from the inbound recoverable fraud dataset for the last 10 days. This dataset contains transactions flagged as potentially fraudulent and eligible for further action.
+
+Identify Chargeback Time Window: Set the time window for chargeback eligibility, typically 120 days from the transaction date. Transactions older than this period are considered "out of time" and are no longer eligible for chargeback processing.
 
 
-Exclude Invalid Chargebacks: Mark or exclude the chargebacks identified as "out of time" from further processing to prevent them from being investigated or disputed.
-Reporting: Generate reports to track the "out of time" chargebacks, ensuring that they are not included in chargeback processing and are reviewed by stakeholders for compliance.
+Filter Valid Transactions: Filter the inbound recoverable fraud data to identify transactions within the last 10 days that are still within the 120-day chargeback window from the transaction date. This ensures that only valid fraud transactions are flagged for further action.
+
+Flag for Merchant Refund: For transactions within the valid time window, allow Ethoca to contact the merchant to request a refund, as these transactions are eligible for chargeback recovery.
+
+
+Exclude Out of Time Transactions: Mark or exclude transactions that are "out of time" (i.e., older than 120 days) from further processing, ensuring that no invalid chargebacks are pursued.
+
+Reporting: Generate reports to track fraud transactions that are eligible for recovery and those that have gone "out of time," providing transparency for stakeholders and ensuring compliance with chargeback rules
