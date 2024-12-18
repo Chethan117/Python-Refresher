@@ -34,7 +34,8 @@ Exclude duplicates by comparing with yesterday’s flagged cases.
 This structured method ensures fraudulent transactions are systematically identified, verified, and prepared for operational action while minimizing errors and duplication.
 
 
-
+Critical Rationale:
+Timely processing ensures valid fraud cases are recovered, prevents wasted effort on out-of-time transactions, and maintains compliance with rules, protecting both financial and customer interests.
 
 
 
