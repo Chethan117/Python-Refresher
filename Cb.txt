@@ -1,60 +1,17 @@
 <ol>
-  <li>
-    <strong>Extract Recent Fraud Transactions:</strong>
-    <ul>
-      <li>Identify all transactions flagged as fraud in the last <strong>10 days</strong> from the inbound recoverable dataset.</li>
-    </ul>
-  </li>
-  <li>
-    <strong>Filter Recent Debit Transactions:</strong>
-    <ul>
-      <li>Select only those transactions debited within the last <strong>120 days</strong> from Visa or MasterCard merchants.</li>
-    </ul>
-  </li>
-  <li>
-    <strong>Focus on Critical Transactions:</strong>
-    <ul>
-      <li>Further narrow down the transactions to those that occurred between <strong>120 days and 112 days</strong> from the current date.</li>
-      <li>This ensures focus on transactions close to the chargeback eligibility deadline.</li>
-    </ul>
-  </li>
-  <li>
-    <strong>Check for Chargebacks:</strong>
-    <ul>
-      <li>Review the filtered transactions to determine if a chargeback has already been actioned.</li>
-      <li>Extract the <strong>chargeback date</strong> and exclude all chargeback-completed transactions.</li>
-    </ul>
-  </li>
-  <li>
-    <strong>Verify Merchant Credits:</strong>
-    <ul>
-      <li>Check for any credits received from merchants for the accounts associated with the remaining transactions.</li>
-    </ul>
-  </li>
-  <li>
-    <strong>Avoid Duplicate Processing:</strong>
-    <ul>
-      <li>Compare the extracted transactions with <strong>yesterday's flagged cases</strong> to ensure duplicates are not included.</li>
-    </ul>
-  </li>
-  <li>
-    <strong>Push Non-Worked Transactions to Tables:</strong>
-    <ul>
-      <li>Insert the final list of non-duplicate transactions into the <strong>daily table</strong> and the <strong>repo table</strong> for tracking.</li>
-    </ul>
-  </li>
-  <li>
-    <strong>Send to Operational Workstream:</strong>
-    <ul>
-      <li>Share the prepared list with the <strong>operational workstream</strong> for further investigation and resolution.</li>
-    </ul>
-  </li>
+  <li><strong>Extract Recent Fraud Transactions:</strong> Identify all transactions flagged as fraud in the last <strong>10 days</strong> from the inbound recoverable dataset.</li>
+  <li><strong>Filter Recent Debit Transactions:</strong> Select only those transactions debited within the last <strong>120 days</strong> from Visa or MasterCard merchants.</li>
+  <li><strong>Focus on Critical Transactions:</strong> Further narrow down the transactions to those that occurred between <strong>120 days and 112 days</strong> from the current date. This ensures focus on transactions close to the chargeback eligibility deadline.</li>
+  <li><strong>Check for Chargebacks:</strong> Review the filtered transactions to determine if a chargeback has already been actioned. Extract the <strong>chargeback date</strong> and exclude all chargeback-completed transactions.</li>
+  <li><strong>Verify Merchant Credits:</strong> Check for any credits received from merchants for the accounts associated with the remaining transactions.</li>
+  <li><strong>Avoid Duplicate Processing:</strong> Compare the extracted transactions with <strong>yesterday's flagged cases</strong> to ensure duplicates are not included.</li>
+  <li><strong>Push Non-Worked Transactions to Tables:</strong> Insert the final list of non-duplicate transactions into the <strong>daily table</strong> and the <strong>repo table</strong> for tracking.</li>
+  <li><strong>Send to Operational Workstream:</strong> Share the prepared list with the <strong>operational workstream</strong> for further investigation and resolution.</li>
 </ol>
 
 <h3>Script Decision Rationale and Requirements</h3>
 <ol>
-  <li>
-    <strong>Rationale:</strong>
+  <li><strong>Rationale:</strong>
     <ul>
       <li><strong>Fraud Transactions in the Last 10 Days:</strong> Focuses on recent cases to capture actionable fraud trends.</li>
       <li><strong>Transactions Debited in the Last 120 Days:</strong> Ensures inclusion of relevant transactions within the chargeback eligibility window.</li>
@@ -64,8 +21,7 @@
       <li><strong>Exclude Duplicates:</strong> Ensures efficient processing by avoiding reworking flagged transactions.</li>
     </ul>
   </li>
-  <li>
-    <strong>Requirements for Script Decisions:</strong>
+  <li><strong>Requirements for Script Decisions:</strong>
     <ul>
       <li><strong>Accurate Date Logic:</strong> Ensure the script calculates date ranges (last 10 days, 120 days, and 112 days) dynamically based on the current date.</li>
       <li><strong>Fraud Flag Identification:</strong> Use consistent criteria to identify fraud-flagged transactions from the inbound recoverable dataset.</li>
@@ -75,3 +31,5 @@
     </ul>
   </li>
 </ol>
+
+<p>For further details, refer to the daily transaction processing workflow or contact the operational team for clarification.</p>
