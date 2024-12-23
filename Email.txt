@@ -1,0 +1,19 @@
+Subject: Remediation Script for Merchant Name Issue
+
+Dear Team,
+
+We have identified an issue where merchant names contain spaces at the beginning or a pipe (|) symbol, causing processing errors. Upon using PRXCHANGE, the issue was resolved, and the process completed successfully.
+
+Remediation Steps:
+For anyone encountering this issue, please execute the code provided in the Dev version below:
+[Insert the remediation script or a link to it]
+
+
+Additionally, please refer to the attached file for columns prev_merchant_name and new_merchant_name, filtered with false values to identify problematic records.
+
+Next Steps:
+
+Review the attached file for details.
+Execute the Dev version of the script as required.
+Monitor for recurring issues.
+Evaluate and implement changes post-change freeze if needed.
