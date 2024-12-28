@@ -24,3 +24,16 @@
 
 <h3>Non-Execution Impact</h3>
 <p>(To be detailed based on requirements)</p>
+
+
+
+<ol>
+  <li><b>Gather Data:</b> We start by looking at the case data stored in a system. This data includes details like when each case happened, which queue it was in, and its category.</li>
+  <li><b>Organize and Filter:</b> We then filter this data to focus only on cases that occurred in the last three months, starting from the first day of the current month. We organize the data by the date and time the case occurred, which queue it was in, and the type of queue.</li>
+  <li><b>Count the Cases:</b> After organizing the data, we count how many cases fall into each combination of date, time, queue name, and category.</li>
+  <li><b>Push the Data to Snowflake:</b> Once the data is organized and counted, we push it into Snowflake, which is a cloud-based data storage system. Snowflake helps us store this data in an organized way so we can easily access it for analysis.</li>
+  <li><b>Visualize in Tableau:</b> After the data is stored in Snowflake, we use Tableau (a tool for creating visual reports) to turn this data into interactive charts and tables. This makes it easy to see patterns, trends, and insights at a glance.</li>
+</ol>
+
+<p>By doing this, we create a report that not only organizes and counts the cases but also allows stakeholders to easily explore and understand the data visually in Tableau. This helps with decision-making and better understanding of how cases are being handled over time.</p>
+
