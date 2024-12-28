@@ -16,7 +16,8 @@
   <li><b>Genuine Transactions:</b> Determine daily non-fraudulent transactions over the past 13 months.</li>
   <li><b>Decline Rates:</b> Compare declined transactions to total transactions to measure daily decline rates.</li>
   <li><b>Genuine Decline Rates:</b> Compare genuine declines to total genuine transactions for daily rates.</li>
-  <li><b>Decline Volumes:</b> Summarize decline types (fraud-related and genuine) to understand volumes.</li>
+ <li><b>Decline Rates in Basis Points:</b> Combine the daily fraud-related decline rates and genuine decline rates to provide a clear picture of overall trends.</li>
+  <li><b>Decline Volumes:</b> Summarize the daily volumes of declined transactions for all reasons (both fraud-related and genuine) and prepare the data for visualization. The data is then saved in Snowflake to make it available in Tableau for analysis.</li>
 </ol>
 
 <hr>
