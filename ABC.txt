@@ -1,0 +1,7 @@
+The method involves summarizing transactions into three categories: non-recoverable (money that is lost and cannot be recovered), recoverable (money that has a chance of being recovered), and all transactions (a combination of both). The process starts by extracting information such as the date, type of transaction, number of records, and amounts for each category. For recoverable transactions, a comparison is made between the expected budget and the actual amount to determine which value to include. The data from all categories is combined into a single table to provide a comprehensive report that tracks recoverable amounts, losses, and total claims, offering a clear view of financial transactions. After summarizing the data, old records in the department table are deleted to avoid duplication, and the newly extracted data is pushed into the Snowflake department table for reporting and analysis.
+
+
+
+
+
+
