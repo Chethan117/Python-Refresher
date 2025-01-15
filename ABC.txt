@@ -1,8 +1,1 @@
-TIERED_WATCH_STAT_CD IN ('L2','L3','L4','L8') | Indicates bypass is marked on the account | As per the definition of tiered watch status codes | Review status codes to identify bypass scenarios
-TSYS_DCLN_REAS_CD IN ('9008', '9009', '9010', '9011') | Indicates transaction is declined due to specific reasons | As per the definition of decline reason codes | Review decline reason codes for specific fraud patterns
-9008 | Tactical - High Risk Merchants | Matches business definition of tactical decline | Identify merchant-based declines
-9009 | JIC Bypass - High Value | Matches business rules for high-value bypasses | Validate high-value exceptions for bypassed transactions
-9010 | Scam Pop-up Merchant | Matches fraud detection policy | Review transactions for scam-related merchants
-9011 | POS 91 Decline | Decline due to Point-of-Sale-related error | Investigate declines flagged as POS 91
-FRD_PRIRT_CD = '069' | Indicates specific fraud-related prioritization | Code corresponds to predefined fraud type | Review fraud prioritization codes
-FRD_IND <> 'N' | Identifies confirmed fraud | Ensures only fraud-related transactions are considered | Confirm fraud status for each transaction
+
