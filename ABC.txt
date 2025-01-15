@@ -1,1 +1,8 @@
-The report is essential for fraud monitoring as it provides key transaction metrics while excluding irrelevant data, ensuring investigators can focus on suspicious activities without noise. It also keeps the Tableau dashboard updated for accurate and timely reviews.
+<ol>
+  <li>Filter bypass accounts to focus on flagged accounts.</li>
+  <li>Match transactions related to bypassed accounts.</li>
+  <li>Classify responses as approved, rejected, or pending.</li>
+  <li>Calculate available balance during fraud-related events.</li>
+  <li>Summarize data monthly by transaction status and amounts.</li>
+  <li>Aggregate reports for a comprehensive fraud trend summary.</li>
+</ol>
