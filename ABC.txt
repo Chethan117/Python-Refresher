@@ -1,11 +1,1 @@
-AND NOT EXISTS (
-    SELECT 1
-    FROM authzn c
-    WHERE c.account_id = b.account_id
-      AND c.card_number = b.card_number
-      AND FLOOR(MONTHS_BETWEEN(c.authorisation_request_process_date, b.authorisation_request_process_date)) BETWEEN 1 AND 11
-      AND c.authorisation_request_process_date < a.authorisation_request_process_date
-      AND c.authorization_amount BETWEEN 0.9 * b.authorization_amount AND 1.1 * b.authorization_amount
-      AND c.authorization_response_code IN (1,2,3)
-      AND c.pos_entry_mthd_cd IN (01,10,81)
-)
+<ol><li><strong>Initial Data Collection (REPRESENTS table)</strong><ul>Pulls chargeback action data from the past 30 days • Identifies if each transaction is VISA or Mastercard based on the card number • Only includes transactions with action type '30'</ul></li><li><strong>First Stage Processing (REPRESENTS_STG1)</strong><ul>Links the initial data with additional chargeback information • Prioritizes records that have reason codes • Assigns rankings to transactions to handle duplicates</ul></li><li><strong>Location Assignment (REPRESENTS_STG2)</strong><ul>Determines if the transaction was processed in the UK or offshore • Matches employee IDs to get agent details • Cleans up merchant names by removing special characters • Only keeps the highest-ranked transaction for each reference ID</ul></li><li><strong>Case Type Flagging (CB_TYPE_FLAGS)</strong><ul>Marks each transaction as either a dispute or fraud case • Uses existing dispute and fraud transaction records to determine this</ul></li><li><strong>Queue Assignment (FRD_90506_DTSP_REPRESENTS_DIY)</strong><ul>Sets work dates based on card scheme: VISA: next day • Mastercard: 9 days later • Others: 6 days later • Assigns cases to different queues (UK or Offshore) based on: The original chargeback reason • Whether it's a dispute or fraud case • Where it was initially processed</ul></li><li><strong>Final Processing and Distribution</strong><ul>Creates daily reports of cases • Removes any duplicate entries • Distributes cases to different teams: UK FREC (Fraud Recovery) team • Offshore FREC team • Offshore Disputes team • Maintains separate tables for each team's daily workload</ul></li></ol>```
