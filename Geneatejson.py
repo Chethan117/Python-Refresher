@@ -1,4 +1,12 @@
-def generate_object_construct(column_names):
+def generate_object_construct_from_lines():
+    print("Enter column names (line by line). Type 'END' to stop:")
+    column_names = []
+    while True:
+        column = input()  # Read column name line by line
+        if column.strip().upper() == "END":
+            break
+        column_names.append(column.strip())
+    
     output = []
     for column in column_names:
         result = (
@@ -13,9 +21,7 @@ def generate_object_construct(column_names):
     return "\n,\n".join(output)
 
 
-# Example input
-columns = ["Column1", "Column2", "Column3"]
-
 # Generate the SQL
-sql_output = generate_object_construct(columns)
+sql_output = generate_object_construct_from_lines()
+print("\nGenerated SQL:\n")
 print(sql_output)
