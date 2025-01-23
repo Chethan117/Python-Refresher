@@ -1,10 +1,5 @@
-**Decision** | **Rationale** | **Requirement**
---- | --- | ---
-**Identification of Card Scheme** | Identify the card scheme (VISA or Mastercard) based on the acquirer reference number. The second character ('4' for VISA, '5' for Mastercard) determines the scheme. | Critical for processing transactions according to specific card scheme rules. Ensures compliance and accuracy in transaction processing.
-**Routing Transactions Based on Chargeback Reason ('4880', '4870', '4871')** | Route transactions with specific chargeback reasons to "FREC REPRESENTS - UK" for specialized handling. | Ensures transactions are handled by the appropriate team, optimizing resolution times and customer satisfaction.
-**Handling Disputes and Fraud Based on Flags and Location** | Determine the appropriate handling team based on dispute and fraud flags, and the agent’s location. Routes are determined as follows:
-- 'OFFSHORE' with no disputes or fraud flags to "DISPUTES REPRESENTS - OFFSHORE".
-- 'OFFSHORE' with a dispute flag but no fraud flag to "DISPUTES REPRESENTS - OFFSHORE".
-- 'UK' with a dispute flag but no fraud to "DISPUTES REPRESENTS - UK".
-- Fraud cases handled based on 'UK' or 'OFFSHORE' designation. | Accurate routing based on the issue nature and location ensures cases are handled efficiently and appropriately, critical for effective resolution.
-**Fallback for Unknown Cases** | Assign "FREC UNKNOWN REPRESENTS - UK" for transactions that do not meet any predefined criteria, ensuring all are addressed. | Vital for maintaining operational continuity and full coverage in transaction processing.
+Subject: Confirmation Request - Email Routing for Talos Work Stream and SAS Exit
+Dear [Recipient],
+Given the transition of the work stream to Talos and the SAS exit routing to Salesforce for exceptional reporting, I am seeking confirmation on whether the current email routing remains necessary.
+Please advise on the continued requirements for email communication.
+Thank you,
