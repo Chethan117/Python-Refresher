@@ -1,0 +1,65 @@
+Proposal for New Report on Declined and Approved Transactions with Merchant Tracking
+1. Executive Summary
+This document proposes the creation of a new report aimed at tracking declined and approved transactions, specifically focusing on:
+
+Merchant details (Merchant ID, Merchant Name, Merchant Category, Acquiring Bank Identification Number)
+The number of declined and approved transactions for each unique merchant.
+The total authorization amounts for both declined and approved transactions.
+Handling edge cases where customers have multiple subscriptions processed by the same payment processor.
+2. Background
+In the current reporting system, there is no comprehensive view of merchant transaction behavior across both declined and approved transactions for customers with multiple subscriptions. This report will enable better tracking of merchant interactions with customers, identify trends, and help with fraud detection or customer insights.
+
+3. Business Objective
+The objective of this new report is to:
+
+Track unique merchant interactions for both declined and approved transactions.
+Calculate transaction volumes (total amounts and counts) for each merchant, segmented by declined and approved statuses.
+Identify patterns in multiple subscriptions processed by the same payment processor, especially in cases where there are varied amounts for the same customer.
+Provide insights into the merchant performance and acquiring bank details.
+4. Requirements
+Data Requirements
+The report will need to pull data from the authzn table, which contains the following relevant columns:
+
+account_id: To identify the customer.
+card_number: To track card-based transactions.
+merchant_id: To track the merchant involved in the transaction.
+authorization_amount: To track the amount of the transaction.
+authorization_response_code: To classify the transaction as approved or declined.
+acquiring_bank_identification_number: To identify the payment processor.
+merchant_category_code: To categorize the merchant type.
+merchant_name: To identify the merchant name.
+authorisation_request_process_date: To track when the transaction occurred.
+Business Logic
+Declined Transactions: The transactions should be classified as declined based on certain response codes, such as NOT IN (1,2,3).
+Approved Transactions: The transactions should be classified as approved based on response codes IN (1,2,3).
+Handling Multiple Subscriptions: The query should handle customers with multiple subscriptions by counting each unique merchant transaction and excluding edge cases like PayPal.
+Date Filtering: For each declined transaction, we will look for approved transactions within a 27-32 day window.
+5. Approach and SQL Query Breakdown
+SQL Query Strategy
+We will create a comprehensive report using the following steps:
+
+Group by customer and card number: We will group data by account_id and card_number to track the total amount, number of transactions, and merchant details for both blocked (declined) and approved transactions.
+Track unique merchants: By using LISTAGG and COUNT(DISTINCT ...), we will ensure that each unique merchant is tracked separately.
+Transaction Counts: We will count the number of declined and approved transactions per merchant.
+Handling Edge Cases: Using logic to group transactions and detect repeated merchant activity, we will identify and properly handle cases of customers with multiple subscriptions processed by the same payment processor.
+Date Aggregation: We will use MIN() and MAX() to calculate the earliest blocked date and the latest approved date for each customer
+
+
+is report will generate the following output:
+
+Total blocked and approved amounts for each customer.
+Unique merchants involved in both blocked and approved transactions.
+Total number of declined and approved transactions per unique merchant.
+Merchant details (Merchant ID, Name, Category, Bank ID) for both blocked and approved transactions.
+Earliest blocked date and latest approved date for each customer.
+7. Timeline
+Data Collection & Testing: 1 week.
+SQL Query Implementation: 2 days.
+Report Generation & Validation: 3 days.
+Review and Refinements: 2 days.
+8. Expected Outcomes
+Improved Transparency: By tracking both declined and approved transactions at the merchant level, the report will provide better insights into customer behavior.
+Fraud Detection: Anomalies in multiple subscriptions or transactions can be detected and flagged for further investigation.
+Business Intelligence: The report will enable data-driven decisions regarding merchant relationships, fraud risk, and customer support.
+9. Conclusion
+This new report will provide essential insights into declined and approved transactions, help identify customer patterns, and provide detailed merchant data that can be used for better decision-making and fraud prevention.
