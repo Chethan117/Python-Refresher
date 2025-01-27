@@ -1,120 +1,76 @@
-WITH monthly_base AS (
+WITH distinct_transactions AS (
     SELECT
-          'MONTHLY_CHECK'                                            AS check_type
-        -- Blocked details first
-        , b.account_id                                              AS blocked_account_id
-        , b.card_number                                             AS blocked_card_number
-        , b.authorisation_request_process_date                      AS blocked_date
-        , b.authorization_amount                                    AS blocked_amount
-        , b.merchant_id                                             AS blocked_merchant_id
-        , b.merchant_name                                           AS blocked_merchant_name
-        , b.acquiring_bank_identification_number                    AS blocked_acq_bin
-        , b.merchant_category_code                                  AS blocked_mcc
-        
-        -- Approved details next
-        , a.authorisation_request_process_date                      AS approved_date
-        , a.authorization_amount                                    AS approved_amount
-        , a.merchant_id                                             AS approved_merchant_id
-        , a.merchant_name                                           AS approved_merchant_name
-        , a.acquiring_bank_identification_number                    AS approved_acq_bin
-        , a.merchant_category_code                                  AS approved_mcc
-
+        b.account_id,
+        b.card_number,
+        b.merchant_id AS blocked_merchant_id,
+        a.merchant_id AS approved_merchant_id,
+        b.authorization_amount AS blocked_amount,
+        a.authorization_amount AS approved_amount,
+        b.authorization_response_code AS blocked_response_code,
+        a.authorization_response_code AS approved_response_code,
+        b.acquiring_bank_identification_number AS blocked_acq_bin,
+        a.acquiring_bank_identification_number AS approved_acq_bin,
+        b.merchant_category_code AS blocked_mcc,
+        a.merchant_category_code AS approved_mcc,
+        b.merchant_name AS blocked_merchant_name,
+        a.merchant_name AS approved_merchant_name,
+        b.authorisation_request_process_date AS blocked_date,
+        a.authorisation_request_process_date AS approved_date
     FROM authzn b
     INNER JOIN authzn a
-        ON  b.account_id  = a.account_id
+        ON b.account_id = a.account_id
         AND b.card_number = a.card_number
-        
-        -- Example: Looking 27–32 days later for monthly
-        AND a.authorisation_request_process_date BETWEEN 
-              DATEADD(day, 27, b.authorisation_request_process_date)
-          AND DATEADD(day, 32, b.authorisation_request_process_date)
-
+        AND a.authorisation_request_process_date BETWEEN DATEADD(day, 27, b.authorisation_request_process_date)
+                                                   AND DATEADD(day, 32, b.authorisation_request_process_date)
     WHERE
-        -- b is BLOCKED (Declined, Referred, Pickup, or scheme reason)
-        (
-           b.authorization_response_code NOT IN (1,2,3)
-           OR b.switch_reason_code IN ('9201','0041')
-        )
+        -- Filter conditions for blocked and approved transactions
+        b.authorization_response_code NOT IN (1,2,3)  -- Blocked
+        AND a.authorization_response_code IN (1,2,3)   -- Approved
         AND b.pos_entry_mthd_cd IN (01,10,81)  -- CNP
-
-        -- a is APPROVED
-        AND a.authorization_response_code IN (1,2,3)
         AND a.pos_entry_mthd_cd IN (01,10,81)  -- CNP
-
-        -- Merchant changed
-        AND (
-            b.merchant_id   <> a.merchant_id
-            OR b.merchant_name <> a.merchant_name
-        )
-        
+        AND b.switch_reason_code IN ('9201','0041') 
+        AND b.authzn = 0210
+        AND a.authzn = 0100
+        AND a.authzn_amt >= 0.9 * b.authzn_amt
+        AND a.authzn_amt <= 1.1 * b.authzn_amt
+        AND UPPER(TRIM(b.merchant_name)) = UPPER(TRIM(b.merchant_name))
         -- Exclude PayPal (optional)
         AND b.merchant_name NOT ILIKE '%PAYPAL%'
         AND a.merchant_name NOT ILIKE '%PAYPAL%'
-),
-
-annual_base AS (
-    SELECT
-          'ANNUAL_CHECK'                                             AS check_type
-        -- Blocked details first
-        , b.account_id                                              AS blocked_account_id
-        , b.card_number                                             AS blocked_card_number
-        , b.authorisation_request_process_date                      AS blocked_date
-        , b.authorization_amount                                    AS blocked_amount
-        , b.merchant_id                                             AS blocked_merchant_id
-        , b.merchant_name                                           AS blocked_merchant_name
-        , b.acquiring_bank_identification_number                    AS blocked_acq_bin
-        , b.merchant_category_code                                  AS blocked_mcc
-        
-        -- Approved details next
-        , a.authorisation_request_process_date                      AS approved_date
-        , a.authorization_amount                                    AS approved_amount
-        , a.merchant_id                                             AS approved_merchant_id
-        , a.merchant_name                                           AS approved_merchant_name
-        , a.acquiring_bank_identification_number                    AS approved_acq_bin
-        , a.merchant_category_code                                  AS approved_mcc
-
-    FROM authzn b
-    INNER JOIN authzn a
-        ON  b.account_id  = a.account_id
-        AND b.card_number = a.card_number
-
-        -- Example: Looking 12–13 months later for annual
-        AND a.authorisation_request_process_date BETWEEN
-              DATEADD(month, 12, b.authorisation_request_process_date)
-          AND DATEADD(month, 13, b.authorisation_request_process_date)
-
-    WHERE
-        -- b is BLOCKED
-        (
-           b.authorization_response_code NOT IN (1,2,3)
-           OR b.switch_reason_code IN ('9201','0041')
-        )
-        AND b.pos_entry_mthd_cd IN (01,10,81)  -- CNP
-
-        -- a is APPROVED
-        AND a.authorization_response_code IN (1,2,3)
-        AND a.pos_entry_mthd_cd IN (01,10,81)  -- CNP
-
-        -- Merchant changed
-        AND (
-            b.merchant_id   <> a.merchant_id
-            OR b.merchant_name <> a.merchant_name
-        )
-        
-        -- Exclude PayPal
-        AND b.merchant_name NOT ILIKE '%PAYPAL%'
-        AND a.merchant_name NOT ILIKE '%PAYPAL%'
 )
-
--- Combine monthly and annual results
-SELECT *
-FROM monthly_base
-UNION ALL
-SELECT *
-FROM annual_base
-ORDER BY
-    check_type,
-    blocked_account_id,
-    blocked_card_number,
-    blocked_date,
-    approved_date;
+SELECT
+    account_id,
+    card_number,
+    
+    -- Track total blocked and approved amounts for the customer
+    SUM(blocked_amount) AS total_blocked_amount,
+    SUM(approved_amount) AS total_approved_amount,
+    
+    -- Count the number of declined and approved transactions per unique merchant
+    COUNT(DISTINCT blocked_merchant_id) AS unique_blocked_merchants,
+    COUNT(DISTINCT approved_merchant_id) AS unique_approved_merchants,
+    
+    -- Concatenate unique blocked merchant IDs using LISTAGG
+    LISTAGG(DISTINCT blocked_merchant_id, ',') WITHIN GROUP (ORDER BY blocked_merchant_id) AS blocked_merchant_ids,
+    
+    -- Concatenate unique approved merchant IDs using LISTAGG
+    LISTAGG(DISTINCT approved_merchant_id, ',') WITHIN GROUP (ORDER BY approved_merchant_id) AS approved_merchant_ids,
+    
+    -- Count the number of blocked and approved transactions for each unique merchant
+    COUNT(CASE WHEN blocked_response_code NOT IN (1,2,3) THEN 1 END) AS blocked_transactions_count,
+    COUNT(CASE WHEN approved_response_code IN (1,2,3) THEN 1 END) AS approved_transactions_count,
+    
+    -- Include the merchant details for blocked and approved transactions
+    LISTAGG(DISTINCT blocked_mcc, ',') WITHIN GROUP (ORDER BY blocked_mcc) AS blocked_mccs,
+    LISTAGG(DISTINCT approved_mcc, ',') WITHIN GROUP (ORDER BY approved_mcc) AS approved_mccs,
+    LISTAGG(DISTINCT blocked_acq_bin, ',') WITHIN GROUP (ORDER BY blocked_acq_bin) AS blocked_acq_bins,
+    LISTAGG(DISTINCT approved_acq_bin, ',') WITHIN GROUP (ORDER BY approved_acq_bin) AS approved_acq_bins,
+    LISTAGG(DISTINCT blocked_merchant_name, ',') WITHIN GROUP (ORDER BY blocked_merchant_name) AS blocked_merchant_names,
+    LISTAGG(DISTINCT approved_merchant_name, ',') WITHIN GROUP (ORDER BY approved_merchant_name) AS approved_merchant_names,
+    
+    -- Include the earliest blocked and approved dates (you can also use MAX() depending on your requirements)
+    MIN(blocked_date) AS earliest_blocked_date,
+    MAX(approved_date) AS latest_approved_date
+    
+FROM distinct_transactions
+GROUP BY account_id, card_number;
