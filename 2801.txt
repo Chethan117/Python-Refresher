@@ -1,47 +1,27 @@
-Subject: Script Execution and Data Cleanup for CPA Cases
+# Documentation of the Transaction Analysis and Reporting Process
 
-Dear [Recipient's Name],
+## Intent and Background
+The primary objective is to extract and analyze Visa and MasterCard transactions from the Broadcom database over the last three months to monitor and detect fraud. This process enhances security measures, ensures transaction integrity, manages data retention, and complies with data governance policies.
 
-I hope this email finds you well.
+## Methodology
+1. **Data Extraction**
+   - Extract Visa and MasterCard transactions from the Broadcom database for the last three months.
+   - Use PSD2 lookup and plastic cross-reference to obtain fraud status and account ID for each transaction.
+2. **Transaction Status Analysis**
+   - Apply 3DS1 and 3DS2 indicators to determine the security status of each transaction.
+   - Calculate and categorize the outcomes to assess authenticity and potential fraud.
+3. **Data Management**
+   - Remove data older than 13 months and from the previous day's three-month period.
+   - Insert new and relevant cases into the department table for ongoing analysis.
+4. **Authentication and Alerts**
+   - Identify phone numbers associated with accounts for OTP alerts.
+   - Determine the OTP delivery method.
+   - Union all authentications and split by method like successful, confirmed fraud, or assumed fraud.
+5. **Visualization and Reporting**
+   - Push the refined data to a department-specific table for visualization in Tableau.
 
-I wanted to inform you that I have successfully executed the script to pull cases for the period from [X] to [X]. Additionally, for the payment processor where customers had multiple subscriptions, I have filtered out unnecessary noise in the data and focused on retrieving the most recent approval for the same merchant. This will allow agents to reach out to the customer (CH) and work on the required CPAs effectively.
-
-Currently, we will be manually running this process until the report is fully scheduled in Pascal, and the cases are loaded into Salesforce.
-
-I will also be sending the sign-offs for the intent validation shortly once it is completed.
-
-Additionally, during the data review, I noticed that there are cases where the merchant ID remains the same, but the acquiring BIN number has changed. This observation may require further investigation to ensure accuracy.
-
-Please let me know if you need any further details or clarifications.
-
-Best regards,
-[Your Full Name]
-[Your Position]
-[Your Contact Information]
-
-This email conveys all the necessary information clearly and professionally while maintaining a formal tone. You can customize the placeholders (like [X], [Recipient's Name], etc.) as needed.
-
-
-
-
-
-
-You said:
-Subject properly 
-ChatGPT said:
-ChatGPT
-Here's an appropriate subject for the email:
-
-Subject: Script Execution for CPA Cases and Data Cleanup for Payment Processor Subscriptions
-
-This subject clearly highlights the key points of the email—script execution, CPA cases, and data cleanup related to payment processor subscriptions.
-
-
-
-
-
-
-
-
-
-
+## Non-Execution Impact
+- **Increased Fraud Risk**: Lack of timely analysis and response to fraud can result in financial losses and decreased customer trust.
+- **Data Compliance Violations**: Non-compliance with data retention policies can lead to legal and regulatory consequences.
+- **Operational Inefficiency**: Inadequate data management may clutter systems, hindering swift data retrieval and analysis.
+- **Security Breach Risks**: Insufficient monitoring of transaction security and authentication methods increases the risk of security breaches.
