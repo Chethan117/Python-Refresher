@@ -1,5 +1,0 @@
-Subject: Confirmation Request - Email Routing for Talos Work Stream and SAS Exit
-Dear [Recipient],
-Given the transition of the work stream to Talos and the SAS exit routing to Salesforce for exceptional reporting, I am seeking confirmation on whether the current email routing remains necessary.
-Please advise on the continued requirements for email communication.
-Thank you,
