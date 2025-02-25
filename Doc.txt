@@ -1,0 +1,5 @@
+Decision:
+The query identifies account (acct_id) entries in table_stored_process that are missing from daily_output_table, ensuring all agent-entered authorization requests have been processed.
+
+Rationale:
+Detects Missing Entries: Ensures all stored process records are reflected in the daily output.
