@@ -1,3 +1,9 @@
-Ensures Data Consistency: Matches authorized transactions with posted transactions to detect missing or delayed postings.
-Validates Business Rules: Applies time constraints to confirm whether transactions post within expected periods.
-Improves Fraud Detection & Reconciliation: Helps identify discrepancies between authorizations and actual postings.
+The email population has been attached, along with the unique split across merchants—showing how many cases originated from each.
+
+Total population: X
+Unique flagged accounts: Y
+Last report run date: Z
+Last flagged authorization approval date: A
+I have backdated the data from A+1 to March 4, assuming the report goes live from March 11. As per the intent, it automatically backdates for 7 days.
+
+Let me know if you need any adjustments
